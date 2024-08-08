@@ -1,0 +1,39 @@
+.transaction-list {
+	list-style-type: none;
+}
+
+.transaction-header,
+.transaction-item {
+	display: grid;
+	grid-template-columns: repeat(5, 1fr);
+	padding: 1rem;
+}
+
+.transaction-header {
+	background-color: #f8f8f8;
+	border-radius: 50px;
+	h3 {
+		text-transform: uppercase;
+		color: #7c8699;
+		font-weight: 400;
+	}
+}
+
+.transaction-item {
+	grid-template-areas: 'date label category credit debit';
+	.date {
+		grid-area: date;
+	}
+	.label {
+		grid-area: label;
+	}
+	.category {
+		grid-area: category;
+	}
+	.credit {
+		grid-area: credit;
+	}
+	.debit {
+		grid-area: debit;
+	}
+}

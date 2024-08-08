@@ -1,0 +1,157 @@
+$box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+
+*,
+::after,
+::before {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	background-color: #fafafa;
+	min-height: 100vh;
+	margin: 0;
+	font-family: 'Lato', sans-serif;
+}
+
+main {
+	background-color: #fff;
+	padding: 2rem;
+}
+
+.homepage {
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	gap: 1rem;
+	grid-template-areas: 'title title' 'balance balance' 'add-income add-expense' 'transaction transaction';
+}
+.title {
+	grid-area: title;
+}
+.balance {
+	grid-area: balance;
+}
+.add-income {
+	grid-area: add-income;
+}
+.add-expense {
+	grid-area: add-expense;
+}
+.transaction {
+	grid-area: transaction;
+}
+
+.navbar {
+	&-container {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		max-width: 900px;
+		margin: 0 auto;
+		padding: 0 2rem;
+	}
+	a {
+		color: #fff;
+	}
+	.cl-button {
+		background: transparent;
+		border: 0;
+	}
+}
+
+.guest button {
+	border: 0;
+	border-radius: 5px;
+	background: rebeccapurple;
+	color: #fff;
+	padding: 0.5rem 2rem;
+	cursor: pointer;
+}
+
+h1 {
+	letter-spacing: 1px;
+	margin: 0;
+}
+
+h4 {
+	margin: 0;
+	text-transform: uppercase;
+}
+
+.guest {
+	text-align: center;
+}
+
+.error {
+	background: red;
+	color: #fff;
+	padding: 3px;
+}
+
+.inc-exp-container {
+	background-color: #fff;
+	box-shadow: $box-shadow;
+	padding: 20px;
+	display: flex;
+	justify-content: space-between;
+	margin: 20px 0;
+	> div {
+		flex: 1;
+		text-align: center;
+		&:first-of-type {
+			border-right: 1px solid #dedede;
+		}
+	}
+}
+
+.money {
+	font-size: 20px;
+	letter-spacing: 1px;
+	margin: 5px 0;
+	&.plus {
+		color: #2ecc71;
+	}
+	&.minus {
+		color: #c0392b;
+	}
+}
+
+label {
+	display: inline-block;
+	margin: 10px 0;
+}
+
+input[type='text'],
+input[type='number'] {
+	border: 1px solid #dedede;
+	border-radius: 2px;
+	display: block;
+	font-size: 16px;
+	padding: 10px;
+	width: 100%;
+}
+
+.delete-btn:focus {
+	outline: 0;
+}
+
+.delete-btn {
+	cursor: pointer;
+	background-color: #e74c3c;
+	border: 0;
+	color: #fff;
+	font-size: 20px;
+	line-height: 20px;
+	padding: 2px 5px;
+	position: absolute;
+	top: 50%;
+	left: 0;
+	transform: translate(-100%, -50%);
+	opacity: 0;
+	transition: opacity 0.3s ease;
+}
+
+.list li:hover .delete-btn {
+	opacity: 1;
+}

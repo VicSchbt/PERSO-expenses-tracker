@@ -1,6 +1,9 @@
 import { type Transaction } from '@/types/Transaction';
 import getTransactions from '@/app/actions/getTransactions';
 import TransactionItem from './TransactionItem';
+import TransactionHeader from './TransactionHeader';
+import './TransactionList.scss';
+import Card from '../common/Card/Card';
 
 const TransactionList = async () => {
 	const { transactions, error } = await getTransactions();
@@ -10,9 +13,9 @@ const TransactionList = async () => {
 	}
 
 	return (
-		<>
-			<h3>History</h3>
-			<ul className='list'>
+		<Card additionalClass='transaction'>
+			<TransactionHeader />
+			<ul className='transaction-list'>
 				{transactions &&
 					transactions.map((transaction: Transaction) => (
 						<TransactionItem
@@ -21,7 +24,7 @@ const TransactionList = async () => {
 						/>
 					))}
 			</ul>
-		</>
+		</Card>
 	);
 };
 

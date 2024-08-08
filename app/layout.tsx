@@ -1,12 +1,12 @@
 import type { Metadata } from 'next';
-import { Roboto } from 'next/font/google';
-import './globals.css';
+import { Poppins } from 'next/font/google';
+import './globals.scss';
 import { ClerkProvider } from '@clerk/nextjs';
-import Header from '@/components/Header';
+import Header from '@/components/Header/Header';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-const roboto = Roboto({ weight: '400', subsets: ['latin'] });
+const poppins = Poppins({ weight: ['400', '500', '600'], subsets: ['latin'] });
 
 export const metadata: Metadata = {
 	title: 'Expense Tracker',
@@ -21,9 +21,9 @@ export default function RootLayout({
 	return (
 		<ClerkProvider>
 			<html lang='en'>
-				<body className={roboto.className}>
+				<body className={poppins.className}>
 					<Header />
-					<main className='container'>{children}</main>
+					<main>{children}</main>
 					<ToastContainer />
 				</body>
 			</html>

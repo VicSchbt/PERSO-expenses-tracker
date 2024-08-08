@@ -3,12 +3,14 @@
 import { useRef } from 'react';
 import addTransaction from '@/app/actions/addTransaction';
 import { toast } from 'react-toastify';
+import Button from './common/Button/Button';
+import Card from './common/Card/Card';
 
-const AddTransaction = () => {
+const AddTransaction = ({ type }: { type: 'income' | 'expense' }) => {
 	const formRef = useRef<HTMLFormElement>(null);
 
 	const clientAction = async (formData: FormData) => {
-		const { data, error } = await addTransaction(formData);
+		const { data, error } = await addTransaction(formData, type);
 
 		if (error) {
 			toast.error(error);
@@ -19,8 +21,8 @@ const AddTransaction = () => {
 	};
 
 	return (
-		<>
-			<h3>Add transaction</h3>
+		<Card additionalClass={`add-${type}`}>
+			<h3>{`Add ${type}`}</h3>
 			<form
 				ref={formRef}
 				action={clientAction}
@@ -35,9 +37,7 @@ const AddTransaction = () => {
 					/>
 				</div>
 				<div className='form-control'>
-					<label htmlFor='amount'>
-						Amount <br /> (negative - expense, positive - income)
-					</label>
+					<label htmlFor='amount'>Amount</label>
 					<input
 						type='number'
 						name='amount'
@@ -46,9 +46,12 @@ const AddTransaction = () => {
 						step='0.01'
 					/>
 				</div>
-				<button className='btn'>Add transaction</button>
+				<Button
+					variant='solid'
+					radius='full'
+				>{`Add ${type}`}</Button>
 			</form>
-		</>
+		</Card>
 	);
 };
 

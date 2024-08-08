@@ -13,7 +13,10 @@ interface TransactionResult {
 	error?: string;
 }
 
-async function addTransaction(formData: FormData): Promise<TransactionResult> {
+async function addTransaction(
+	formData: FormData,
+	type: 'income' | 'expense'
+): Promise<TransactionResult> {
 	const textValue = formData.get('text');
 	const amountValue = formData.get('amount');
 
@@ -21,7 +24,8 @@ async function addTransaction(formData: FormData): Promise<TransactionResult> {
 		return { error: 'Text or amount is missing' };
 
 	const text: string = textValue.toString();
-	const amount: number = parseFloat(amountValue.toString());
+	const amount: number =
+		(type === 'expense' ? -1 : 1) * parseFloat(amountValue.toString());
 
 	const { userId } = auth();
 	if (!userId) return { error: 'User not found' };
